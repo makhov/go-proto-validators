@@ -487,6 +487,14 @@ func (p *plugin) generateStringValidator(variableName string, ccTypeName string,
 		p.Out()
 		p.P(`}`)
 	}
+	if fv.NotRegex != nil {
+		p.P(`if `, p.regexName(ccTypeName, fieldName), `.MatchString(`, variableName, `) {`)
+		p.In()
+		errorStr := "be a string conforming to regex " + strconv.Quote(fv.GetNotRegex())
+		p.generateErrorString(variableName, fieldName, errorStr, fv)
+		p.Out()
+		p.P(`}`)
+	}
 	if fv.StringNotEmpty != nil && fv.GetStringNotEmpty() {
 		p.P(`if `, variableName, ` == "" {`)
 		p.In()

@@ -22,22 +22,24 @@ extend google.protobuf.FieldOptions {
 message FieldValidator {
   // Uses a Golang RE2-syntax regex to match the field contents.
   optional string regex = 1;
+  // Field value should not match regex. Uses a Golang RE2-syntax regex.
+  optional string not_regex = 2;
   // Field value of integer strictly greater than this value.
-  optional int64 int_gt = 2;
+  optional int64 int_gt = 3;
   // Field value of integer strictly smaller than this value.
-  optional int64 int_lt = 3;
+  optional int64 int_lt = 4;
   // Used for nested message types, requires that the message type exists.
-  optional bool msg_exists = 4;
+  optional bool msg_exists = 5;
   // Human error specifies a user-customizable error that is visible to the user.
-  optional string human_error = 5;
+  optional string human_error = 6;
   // Field value of double strictly greater than this value.
   // Note that this value can only take on a valid floating point
   // value. Use together with float_epsilon if you need something more specific.
-  optional double float_gt = 6;
+  optional double float_gt = 7;
   // Field value of double strictly smaller than this value.
   // Note that this value can only take on a valid floating point
   // value. Use together with float_epsilon if you need something more specific.
-  optional double float_lt = 7;
+  optional double float_lt = 8;
   // Field value of double describing the epsilon within which
   // any comparison should be considered to be true. For example,
   // when using float_gt = 0.35, using a float_epsilon of 0.05
@@ -45,23 +47,23 @@ message FieldValidator {
   // thought of as a {float_value_condition} +- {float_epsilon}.
   // If unset, no correction for floating point inaccuracies in
   // comparisons will be attempted.
-  optional double float_epsilon = 8;
+  optional double float_epsilon = 9;
   // Floating-point value compared to which the field content should be greater or equal.
-  optional double float_gte = 9;
+  optional double float_gte = 10;
   // Floating-point value compared to which the field content should be smaller or equal.
-  optional double float_lte = 10;
+  optional double float_lte = 11;
   // Used for string fields, requires the string to be not empty (i.e different from "").
-  optional bool string_not_empty = 11;
+  optional bool string_not_empty = 12;
   // Repeated field with at least this number of elements.
-  optional int64 repeated_count_min = 12;
+  optional int64 repeated_count_min = 13;
   // Repeated field with at most this number of elements.
-  optional int64 repeated_count_max = 13;
+  optional int64 repeated_count_max = 14;
   // Field value of length greater than this value.
-  optional int64 length_gt = 14;
+  optional int64 length_gt = 15;
   // Field value of length smaller than this value.
-  optional int64 length_lt = 15;
+  optional int64 length_lt = 16;
   // Field value of integer strictly equal this value.
-  optional int64 length_eq = 16;
+  optional int64 length_eq = 17;
   // Requires that the value is in the enum.
-  optional bool is_in_enum = 17;
+  optional bool is_in_enum = 18;
 }
